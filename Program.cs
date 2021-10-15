@@ -39,9 +39,11 @@ namespace Login
             }
             else{
                 while((users.ContainsKey(user) && pass == users[user]) == false){
+                    Console.WriteLine("Invalid login");
                     user = username();
                     pass = password();
                 }
+                Console.WriteLine("You're logged in");
             }
 
             // while(userCheck == false){
