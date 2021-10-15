@@ -7,19 +7,20 @@ namespace Login
 {
     class Program
     {
+        static string username(){
+            Console.WriteLine("Username: ");
+            string username = Console.ReadLine();
+            return username;
+        }
+        static string password(){
+            Console.WriteLine("Password: ");
+            string password = Console.ReadLine();
+            return password;
+        }
+
         static void login(){
-                
-            }
-            static string username(){
-                Console.WriteLine("Username: ");
-                string username = Console.ReadLine();
-                return username;
-            }
-            static string password(){
-                Console.WriteLine("Password: ");
-                string password = Console.ReadLine();
-                return password;
-            }
+            
+        }
         static void Main(string[] args)
         {
             var users = new Dictionary<string, string>(){
@@ -31,8 +32,9 @@ namespace Login
 
             string user = username();
             string pass = password();
-            bool userCheck = false;
-            bool passCheck = false;
+            int tryCount = 1;
+            // bool userCheck = false;
+            // bool passCheck = false;
 
             if(users.ContainsKey(user) && pass == users[user]){
                 Console.WriteLine("You're logged in");
@@ -42,6 +44,19 @@ namespace Login
                     Console.WriteLine("Invalid login");
                     user = username();
                     pass = password();
+                    tryCount++;
+                    if(tryCount == 3){
+                        Console.WriteLine("Do you want to register? y/n");
+                        string choice = Console.ReadLine();
+                        if(choice == "y"){
+                            user = username();
+                            pass = password();
+                            users.Add(user, pass);
+                        }
+                        else{
+                            tryCount = 1;
+                        }
+                    }
                 }
                 Console.WriteLine("You're logged in");
             }
