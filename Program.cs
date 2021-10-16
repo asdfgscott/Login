@@ -57,7 +57,7 @@ namespace Login
                             //Since you registered, you technically logged in
                             Console.WriteLine("You're registered and logged in!");
                         }
-                        else if(choice == "n"){
+                        else{
                             tryCount = 0;
                         }
                     }
